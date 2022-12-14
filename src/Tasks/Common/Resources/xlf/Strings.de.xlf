@@ -142,6 +142,11 @@
         <target state="translated">NETSDK1099: Die Veröffentlichung in einer einzelnen Datei wird nur für ausführbare Anwendungen unterstützt.</target>
         <note>{StrBegin="NETSDK1099: "}</note>
       </trans-unit>
+      <trans-unit id="CannotHaveSolutionLevelOutputPath">
+        <source>NETSDK1194: The "--output" option isn't supported when building a solution.</source>
+        <target state="translated">NETSDK1194: Die Option "--output" wird beim Erstellen einer Lösung nicht unterstützt.</target>
+        <note>{StrBegin="NETSDK1194: "}</note>
+      </trans-unit>
       <trans-unit id="CannotHaveSolutionLevelRuntimeIdentifier">
         <source>NETSDK1134: Building a solution with a specific RuntimeIdentifier is not supported. If you would like to publish for a single RID, specifiy the RID at the individual project level instead.</source>
         <target state="translated">NETSDK1134: Das Erstellen einer Lösung mit einem bestimmten RuntimeIdentifier wird nicht unterstützt. Wenn Sie für eine einzelne RID veröffentlichen möchten, geben Sie die RID auf individueller Projektebene an.</target>
@@ -464,6 +469,11 @@
         <target state="translated">Assemblys werden für die Größe optimiert. Dieser Vorgang kann eine Weile dauern.</target>
         <note />
       </trans-unit>
+      <trans-unit id="ImplicitRuntimeIdentifierResolutionForPublishPropertyFailed">
+        <source>NETSDK1191: A runtime identifier for the property '{0}' couldn't be inferred. Specify a rid explicitly.</source>
+        <target state="translated">NETSDK1191: Ein Runtimebezeichner für die Eigenschaft „{0}“ konnte nicht abgeleitet werden. Geben Sie eine RID explizit an.</target>
+        <note>{StrBegin="NETSDK1191: "}</note>
+      </trans-unit>
       <trans-unit id="IncorrectPackageRoot">
         <source>NETSDK1020: Package Root {0} was incorrectly given for Resolved library {1}</source>
         <target state="translated">NETSDK1020: Der Paketstamm "{0}" war für die aufgelöste Bibliothek "{1}" falsch angegeben.</target>
@@ -575,6 +585,11 @@ The following are names of parameters or literal values and should not be transl
         <target state="translated">NETSDK1182: .NET 6.0 oder höher wird als Ziel in Visual Studio 2019 nicht unterstützt.</target>
         <note>{StrBegin="NETSDK1182: "}</note>
       </trans-unit>
+      <trans-unit id="Net7NotCompatibleWithDev173">
+        <source>NETSDK1192: Targeting .NET 7.0 or higher in Visual Studio 2022 17.3 is not supported.</source>
+        <target state="translated">NETSDK1192: Die Ausrichtung auf .NET 7.0 oder höher in Visual Studio 2022 17.3 wird nicht unterstützt.</target>
+        <note>{StrBegin="NETSDK1192: "}</note>
+      </trans-unit>
       <trans-unit id="NoAppHostAvailable">
         <source>NETSDK1084: There is no application host available for the specified RuntimeIdentifier '{0}'.</source>
         <target state="translated">NETSDK1084: Für den angegebenen RuntimeIdentifier "{0}" ist kein Anwendungshost verfügbar.</target>
@@ -642,7 +657,7 @@ The following are names of parameters or literal values and should not be transl
       </trans-unit>
       <trans-unit id="PReleaseRequiresEnvVarOnSln">
         <source>NETSDK1190: To use '{0}' in solution projects, you must set the environment variable '{1}' (to true). This will increase the time to complete the operation.</source>
-        <target state="new">NETSDK1190: To use '{0}' in solution projects, you must set the environment variable '{1}' (to true). This will increase the time to complete the operation.</target>
+        <target state="translated">NETSDK1190: Um "{0}" in Projektmappenprojekten zu verwenden, müssen Sie die Umgebungsvariable "{1}" (auf TRUE) festlegen. Dadurch wird die Zeit zum Abschließen des Vorgangs erhöht.</target>
         <note>{StrBegin="NETSDK1190: "}</note>
       </trans-unit>
       <trans-unit id="PackAsToolCannotSupportSelfContained">
@@ -687,7 +702,7 @@ The following are names of parameters or literal values and should not be transl
       </trans-unit>
       <trans-unit id="Prefer32BitIgnoredForNetCoreApp">
         <source>NETSDK1189: Prefer32Bit is not supported and has no effect for netcoreapp target.</source>
-        <target state="new">NETSDK1189: Prefer32Bit is not supported and has no effect for netcoreapp target.</target>
+        <target state="translated">NETSDK1189: Prefer32Bit wird nicht unterstützt und hat keine Auswirkungen auf das netcoreapp-Ziel.</target>
         <note>{StrBegin="NETSDK1189: "}</note>
       </trans-unit>
       <trans-unit id="ProjectAssetsConsumedWithoutMSBuildProjectPath">
@@ -709,6 +724,11 @@ The following are names of parameters or literal values and should not be transl
         <source>NETSDK1122: ReadyToRun compilation will be skipped because it is only supported for .NET Core 3.0 or higher.</source>
         <target state="translated">NETSDK1122: Die ReadyToRun-Kompilierung wird übersprungen, weil sie nur für .NET Core 3.0 oder höher unterstützt wird.</target>
         <note>{StrBegin="NETSDK1122: "}</note>
+      </trans-unit>
+      <trans-unit id="PublishSelfContainedMustBeBool">
+        <source>NETSDK1193: If PublishSelfContained is set, it must be either true or false. The value given was '{0}'.</source>
+        <target state="translated">NETSDK1193: Wenn PublishSelfContained festgelegt ist, muss es entweder "true" oder "false" sein. Der angegebene Wert war "{0}".</target>
+        <note>{StrBegin="NETSDK1193: "}</note>
       </trans-unit>
       <trans-unit id="PublishSingleFileRequiresVersion30">
         <source>NETSDK1123: Publishing an application to a single-file requires .NET Core 3.0 or higher.</source>

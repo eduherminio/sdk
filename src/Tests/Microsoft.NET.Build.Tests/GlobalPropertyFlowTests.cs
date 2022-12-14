@@ -45,7 +45,7 @@ namespace Microsoft.NET.Build.Tests
 
         TestAsset Build(bool passSelfContained, bool passRuntimeIdentifier, [CallerMemberName] string callingMethod = "", string identifier = "")
         {
-            var testAsset = _testAssetsManager.CreateTestProject(_testProject, callingMethod: callingMethod, identifier:identifier);
+            var testAsset = _testAssetsManager.CreateTestProject(_testProject, callingMethod: callingMethod, identifier: identifier);
 
             var arguments = GetDotnetArguments(passSelfContained, passRuntimeIdentifier);
 
@@ -196,7 +196,7 @@ namespace Microsoft.NET.Build.Tests
                 targetFramework: "net7.0");
         }
 
-        [RequiresMSBuildVersionTheory("17.4.0.41702")]
+        [RequiresMSBuildVersionTheory("17.4.0.41702", Skip = "https://github.com/dotnet/msbuild/issues/8154")]
         [InlineData(true, true)]
         [InlineData(true, false)]
         [InlineData(false, true)]
@@ -228,7 +228,7 @@ namespace Microsoft.NET.Build.Tests
 
             var arguments = GetDotnetArguments(passSelfContained, passRuntimeIdentifier);
 
-            if (passSelfContained || passRuntimeIdentifier)
+            if (passRuntimeIdentifier)
             {
                 new DotnetBuildCommand(Log, arguments.ToArray())
                     .WithWorkingDirectory(testAsset.TestRoot)
@@ -252,7 +252,7 @@ namespace Microsoft.NET.Build.Tests
         {
             targetFramework = targetFramework ?? testProject.TargetFrameworks;
 
-            
+
             if (string.IsNullOrEmpty(expectedRuntimeIdentifier) && (expectSelfContained || expectRuntimeIdentifier))
             {
                 //  RuntimeIdentifier might be inferred, so look at the output path to figure out what the actual value used was
@@ -260,7 +260,7 @@ namespace Microsoft.NET.Build.Tests
                 expectedRuntimeIdentifier = Path.GetFileName(Directory.GetDirectories(dir).Single());
             }
 
-            var properties = testProject.GetPropertyValues(testAsset.TestRoot, targetFramework: targetFramework, runtimeIdentifier: expectedRuntimeIdentifier);
+            var properties = testProject.GetPropertyValues(testAsset.TestRoot, targetFramework: targetFramework);
             if (expectSelfContained)
             {
                 properties["SelfContained"].ToLowerInvariant().Should().Be("true");
@@ -269,7 +269,7 @@ namespace Microsoft.NET.Build.Tests
             {
                 properties["SelfContained"].ToLowerInvariant().Should().BeOneOf("false", "");
             }
-            
+
             properties["RuntimeIdentifier"].Should().Be(expectedRuntimeIdentifier);
         }
 

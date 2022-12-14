@@ -142,6 +142,11 @@
         <target state="translated">NETSDK1099: 실행 가능한 애플리케이션의 경우에만 단일 파일에 게시할 수 있습니다.</target>
         <note>{StrBegin="NETSDK1099: "}</note>
       </trans-unit>
+      <trans-unit id="CannotHaveSolutionLevelOutputPath">
+        <source>NETSDK1194: The "--output" option isn't supported when building a solution.</source>
+        <target state="translated">NETSDK1194: 솔루션을 빌드할 때는 "--output" 옵션이 지원되지 않습니다.</target>
+        <note>{StrBegin="NETSDK1194: "}</note>
+      </trans-unit>
       <trans-unit id="CannotHaveSolutionLevelRuntimeIdentifier">
         <source>NETSDK1134: Building a solution with a specific RuntimeIdentifier is not supported. If you would like to publish for a single RID, specifiy the RID at the individual project level instead.</source>
         <target state="translated">NETSDK1134: 특정 RuntimeIdentifier를 사용한 솔루션 빌드는 지원되지 않습니다. 단일 RID에 대해 게시하려면 대신 개별 프로젝트 수준에서 RID를 지정하세요.</target>
@@ -464,6 +469,11 @@
         <target state="translated">크기에 맞게 어셈블리 최적화. 이 프로세스는 시간이 걸릴 수 있습니다.</target>
         <note />
       </trans-unit>
+      <trans-unit id="ImplicitRuntimeIdentifierResolutionForPublishPropertyFailed">
+        <source>NETSDK1191: A runtime identifier for the property '{0}' couldn't be inferred. Specify a rid explicitly.</source>
+        <target state="translated">NETSDK1191: '{0}' 속성의 런타임 식별자를 유추할 수 없습니다. RID를 명시적으로 지정하세요.</target>
+        <note>{StrBegin="NETSDK1191: "}</note>
+      </trans-unit>
       <trans-unit id="IncorrectPackageRoot">
         <source>NETSDK1020: Package Root {0} was incorrectly given for Resolved library {1}</source>
         <target state="translated">NETSDK1020: 패키지 루트 {0}이(가) 확인된 라이브러리 {1}에 대해 잘못 지정되었습니다.</target>
@@ -575,6 +585,11 @@ The following are names of parameters or literal values and should not be transl
         <target state="translated">NETSDK1182: Visual Studio 2019에서 .NET 6.0 이상을 대상으로 하는 것은 지원되지 않습니다.</target>
         <note>{StrBegin="NETSDK1182: "}</note>
       </trans-unit>
+      <trans-unit id="Net7NotCompatibleWithDev173">
+        <source>NETSDK1192: Targeting .NET 7.0 or higher in Visual Studio 2022 17.3 is not supported.</source>
+        <target state="translated">NETSDK1192: Visual Studio 2022 17.3에서 .NET 7.0 이상을 대상으로 하는 것은 지원되지 않습니다.</target>
+        <note>{StrBegin="NETSDK1192: "}</note>
+      </trans-unit>
       <trans-unit id="NoAppHostAvailable">
         <source>NETSDK1084: There is no application host available for the specified RuntimeIdentifier '{0}'.</source>
         <target state="translated">NETSDK1084: 지정된 RuntimeIdentifier '{0}'에 사용할 수 있는 애플리케이션 호스트가 없습니다.</target>
@@ -642,7 +657,7 @@ The following are names of parameters or literal values and should not be transl
       </trans-unit>
       <trans-unit id="PReleaseRequiresEnvVarOnSln">
         <source>NETSDK1190: To use '{0}' in solution projects, you must set the environment variable '{1}' (to true). This will increase the time to complete the operation.</source>
-        <target state="new">NETSDK1190: To use '{0}' in solution projects, you must set the environment variable '{1}' (to true). This will increase the time to complete the operation.</target>
+        <target state="translated">NETSDK1190: 솔루션 프로젝트에서 '{0}'을(를) 사용하려면 환경 변수 '{1}'(true)를 설정해야 합니다. 이렇게 하면 작업을 완료하는 시간이 늘어나게 됩니다.</target>
         <note>{StrBegin="NETSDK1190: "}</note>
       </trans-unit>
       <trans-unit id="PackAsToolCannotSupportSelfContained">
@@ -687,7 +702,7 @@ The following are names of parameters or literal values and should not be transl
       </trans-unit>
       <trans-unit id="Prefer32BitIgnoredForNetCoreApp">
         <source>NETSDK1189: Prefer32Bit is not supported and has no effect for netcoreapp target.</source>
-        <target state="new">NETSDK1189: Prefer32Bit is not supported and has no effect for netcoreapp target.</target>
+        <target state="translated">NETSDK1189: Prefer32Bit는 지원되지 않으며 netcoreapp 대상에는 영향을 주지 않습니다.</target>
         <note>{StrBegin="NETSDK1189: "}</note>
       </trans-unit>
       <trans-unit id="ProjectAssetsConsumedWithoutMSBuildProjectPath">
@@ -709,6 +724,11 @@ The following are names of parameters or literal values and should not be transl
         <source>NETSDK1122: ReadyToRun compilation will be skipped because it is only supported for .NET Core 3.0 or higher.</source>
         <target state="translated">NETSDK1122: ReadyToRun 컴파일은 .NET Core 3.0 이상에서만 지원되므로 건너뜁니다.</target>
         <note>{StrBegin="NETSDK1122: "}</note>
+      </trans-unit>
+      <trans-unit id="PublishSelfContainedMustBeBool">
+        <source>NETSDK1193: If PublishSelfContained is set, it must be either true or false. The value given was '{0}'.</source>
+        <target state="translated">NETSDK1193: PublishSelfContained가 설정된 경우 true 또는 false여야 합니다. 지정된 값은 '{0}'입니다.</target>
+        <note>{StrBegin="NETSDK1193: "}</note>
       </trans-unit>
       <trans-unit id="PublishSingleFileRequiresVersion30">
         <source>NETSDK1123: Publishing an application to a single-file requires .NET Core 3.0 or higher.</source>

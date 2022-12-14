@@ -15,13 +15,13 @@ parameters:
   timeoutInMinutes: 180
 
 jobs:
-- ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), not(contains(parameters.agentOs, 'TemplateEngine'))) }}:
+- ${{ if and(ne(variables['System.TeamProject'], 'public'), notin(variables['Build.Reason'], 'PullRequest'), eq(variables['Build.SourceBranch'], 'refs/heads/release/7.0.2xx'), not(contains(parameters.agentOs, 'TemplateEngine'))) }}:
   - template: /eng/common/templates/job/onelocbuild.yml
     parameters:
       CreatePr: true
       LclSource: lclFilesfromPackage
       LclPackageId: 'LCL-JUNO-PROD-DOTNETSDK'
-      MirrorBranch: main
+      MirrorBranch: release/7.0.2xx
       MirrorRepo: sdk
 
 - ${{ if not(contains(parameters.agentOs, 'TemplateEngine')) }}:
@@ -67,7 +67,8 @@ jobs:
           env:
             Token: $(dn-bot-dnceng-artifact-feeds-rw)
       - ${{ if eq(parameters.agentOs, 'Windows_NT') }}:
-        - script: eng\CIBuild.cmd
+        - powershell: eng\common\build.ps1
+                    $(_CIBuild)
                     -configuration $(_BuildConfig)
                     $(_PublishArgs)
                     $(_SignArgs)
@@ -98,7 +99,8 @@ jobs:
               RunAoTTests: 'false'
   
       - ${{ if eq(parameters.agentOs, 'Windows_NT_FullFramework') }}:
-        - script: eng\CIBuild.cmd
+        - powershell: eng\common\build.ps1
+                    $(_CIBuild)
                     -configuration $(_BuildConfig)
                     $(_SignArgs)
                     $(_OfficialBuildIdArgs)
@@ -128,11 +130,11 @@ jobs:
               HelixAccessToken: $(_HelixApiToken)
   
       - ${{ if eq(parameters.agentOs, 'Windows_NT_TestAsTools') }}:
-        - script: eng\CIBuild.cmd
+        - powershell: eng\common\build.ps1
+                    $(_CIBuild)
                     -configuration $(_BuildConfig)
                     $(_SignArgs)
                     $(_OfficialBuildIdArgs)
-                    $(_Test)
                     $(_InternalRuntimeDownloadArgs)
                     /p:RunTestsAsTool=true
           displayName: Build
@@ -140,7 +142,8 @@ jobs:
             BuildConfig: $(_BuildConfig)
   
       - ${{ if notIn(parameters.agentOs, 'Windows_NT', 'Windows_NT_FullFramework', 'Windows_NT_TestAsTools') }}:
-        - script: eng/common/cibuild.sh
+        - script: eng/common/build.sh
+                    $(_CIBuild)
                     --configuration $(_BuildConfig)
                     $(_SignArgs)
                     $(_OfficialBuildIdArgs)
@@ -241,7 +244,8 @@ jobs:
           env:
             Token: $(dn-bot-dnceng-artifact-feeds-rw)
       - ${{ if eq(parameters.agentOs, 'Windows_NT') }}:
-        - script: eng\CIBuild.cmd
+        - powershell: eng\common\build.ps1
+                    $(_CIBuild)
                     -configuration $(_BuildConfig)
                     $(_SignArgs)
                     $(_OfficialBuildIdArgs)
@@ -262,12 +266,13 @@ jobs:
                 -prepareMachine
                 -projects $(Build.SourcesDirectory)/src/Tests/UnitTests.proj
                 -configuration $(_BuildConfig)
+                $(_InternalRuntimeDownloadArgs)
                 /bl:$(Build.SourcesDirectory)\artifacts\log\$(_BuildConfig)\TestInHelix.binlog
                 /p:_CustomHelixTargetQueue=${{ parameters.helixTargetQueue }}
           displayName: Run AoT Tests in Helix
           env:
               SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-              HelixAccessToken: ''
+              HelixAccessToken: $(_HelixApiToken)
               RunAoTTests: 'true'
 
       - ${{ if eq(parameters.agentOs, 'Darwin') }}:
@@ -294,6 +299,7 @@ jobs:
                 --restore
                 --test
                 --projects $(Build.SourcesDirectory)/src/Tests/UnitTests.proj
+                $(_InternalRuntimeDownloadArgs)
                 /bl:$(Build.SourcesDirectory)/artifacts/log/$(_BuildConfig)/TestInHelix.binlog
                 /p:_CustomHelixTargetQueue=${{ parameters.helixTargetQueue }}
           displayName: Run AoT Tests in Helix
@@ -368,7 +374,8 @@ jobs:
           env:
             Token: $(dn-bot-dnceng-artifact-feeds-rw)
       - ${{ if contains(parameters.agentOs, 'Windows_NT') }}:
-        - script: eng\CIBuild.cmd
+        - powershell: eng\common\build.ps1
+                    $(_CIBuild)
                     -configuration $(_BuildConfig)
                     $(_SignArgs)
                     $(_OfficialBuildIdArgs)

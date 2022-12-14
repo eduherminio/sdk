@@ -169,7 +169,7 @@ namespace Microsoft.DotNet.Watcher.Tools
             await app.Process.GetOutputLineAsyncWithConsoleHistoryAsync("Environment: Development");
         }
 
-        [CoreMSBuildOnlyFact]
+        [CoreMSBuildOnlyFact(Skip = "https://github.com/dotnet/sdk/issues/29047")]
         public async Task Run_WithHotReloadEnabled_DoesNotReadConsoleIn_InNonInteractiveMode()
         {
             var testAsset = _testAssetsManager.CopyTestAsset("WatchAppWithLaunchSettings")
@@ -194,6 +194,19 @@ namespace Microsoft.DotNet.Watcher.Tools
 
             await standardInput.WriteLineAsync(inputString);
             await app.Process.GetOutputLineAsync($"Echo: {inputString}");
+        }
+
+        [CoreMSBuildOnlyFact]
+        public async Task TargetNet60()
+        {
+            var testAsset = _testAssetsManager.CopyTestAsset("WatchApp60")
+                .WithSource()
+                .Path;
+
+            using var app = new WatchableApp(testAsset, _logger);
+
+            await app.StartWatcherAsync();
+            await app.GetProcessIdentifier();
         }
     }
 }
